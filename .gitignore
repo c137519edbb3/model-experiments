@@ -1,0 +1,104 @@
+# OS-generated files
+.DS_Store
+Thumbs.db
+
+# Log files
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Temporary files and folders
+*.tmp
+*.swp
+*.swo
+~$*
+
+# Application cache
+.cache/
+.tmp/
+
+# Node.js dependencies
+node_modules/
+npm-debug.log*
+yarn.lock
+
+
+# Ignore .zip files
+*.zip
+
+# Ignore virtual environment folder
+venv/
+
+
+# Python-related
+__pycache__/
+*.py[cod]
+*.pyo
+env/
+venv/
+
+# Java-related
+*.class
+*.jar
+*.war
+*.ear
+target/
+.gradle/
+build/
+
+# C/C++ binaries
+*.out
+*.o
+*.obj
+*.exe
+
+# IDE and editor settings
+.idea/
+.vscode/
+*.sublime-workspace
+*.sublime-project
+
+# JavaScript/TypeScript
+dist/
+build/
+*.js.map
+*.tsbuildinfo
+
+# Ruby-related
+*.gem
+vendor/
+
+# PHP-related
+vendor/
+ 
+
+# Backup files
+*.bak
+*.old
+*.swp
+*~
+
+# Generated documentation
+docs/_build/
+
+# Version control
+*.orig
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Others
+coverage/
+test-output/
+*.iml
+.idea/
+.project
+.classpath
+.csettings/
+.factorypath
+.history/
+
+# Custom - Add any other paths/files specific to your project here

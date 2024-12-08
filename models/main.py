@@ -92,7 +92,7 @@ def main():
         print("Start Training Task:{}".format(str(i+1)))
         few_shot_train_data = dataset.generate_fewshot_dataset_(cfg['shots'], split="train")
         few_shot_val_data = dataset.generate_fewshot_dataset_(cfg['shots'], split="val") 
-
+    
         if cfg['finetune']:
             train_loader = build_data_loader(
                 data_source=few_shot_train_data, batch_size=cfg["batch_size"], tfm=train_tranform, is_train=True, shuffle=True)
