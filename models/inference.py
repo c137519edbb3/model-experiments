@@ -61,8 +61,10 @@ class CLIPLPInference:
         image = self.transform(image).unsqueeze(0).to(self.device)
         
         # Get image features
-        features = self.base_model.encode_image(image)
-        
+        with torch.cuda.amp.autocast(enabled=False):
+            features = self.base_model.encode_image(image)
+            features = features.float()
+            
         # Get classification results
         logits = self.classifier(features)
         probs = torch.softmax(logits, dim=-1)
