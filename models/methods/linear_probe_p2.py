@@ -153,7 +153,12 @@ class LinearProbe_P2(FSCLIPmethod):
                 logits_test = vision_logits_test + torch.ones(test_features.shape[0], 1).to(model.dtype).cuda() @ alpha_vec * text_logits_test
                 acc_test = np.mean(logits_test.argmax(dim=1).cpu().numpy() ==  test_labels.cpu().numpy()) * 100.0
                 print('The accuracy for test data is ',acc_test)
-                # torch.save(classifier, self.output_dir + "/best_lp_model_" + str(self.shot) + "shots.pt")
+                torch.save({
+                    'classifier': classifier.state_dict(),
+                    'alpha_vec': alpha_vec.data,
+                    'best_acc': best_acc,
+                    'epoch': best_epoch
+                }, os.path.join(self.output_dir, f"best_lp_model_{self.shot}shots.pt"))
                 
                 # Evaluation 
         
