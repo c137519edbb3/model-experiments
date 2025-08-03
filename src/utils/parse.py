@@ -1,3 +1,4 @@
+import json
 from groq import Groq
 from .prompts import SYSTEM_PROMPT
 from dotenv import load_dotenv
@@ -10,6 +11,28 @@ api_key = os.getenv("GROQ_API_KEY")
 
 logger = setup_logger(__name__, log_level="INFO", log_to_file=True, log_to_console=False)
 
+PROCESSED_PATH = "processed.json"
+MEMORY_PATH = "memory.json"
+
+def load_json_data(filename: str, default_value):
+    if os.path.exists(filename):
+        with open(filename, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+            logger.info(f"Loaded {filename} with {len(data) if isinstance(data, (dict, list, set)) else 'data'}")
+            
+            if isinstance(default_value, set) and isinstance(data, list):
+                return set(data)
+            
+            return data
+    else:
+        logger.info(f"File {filename} not found, using default value")
+        return default_value
+
+def save_json_data(data, filename: str):
+    with open(filename, 'w', encoding='utf-8') as f:
+        json.dump(data, f, indent=2, ensure_ascii=False)
+    logger.info(f"Saved data to {filename}")
+    
 def llm_output(metadata: str):
     logger.info("Starting LLM processing")
     try:

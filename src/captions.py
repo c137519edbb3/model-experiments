@@ -6,27 +6,6 @@ from utils.parse import *
 from utils.logger import setup_logger
 
 logger = setup_logger(__name__, log_level="INFO", log_to_file=True, log_to_console=True)
-PROCESSED_PATH = "processed.json"
-MEMORY_PATH = "memory.json"
-
-def load_json_data(filename: str, default_value):
-    if os.path.exists(filename):
-        with open(filename, 'r', encoding='utf-8') as f:
-            data = json.load(f)
-            logger.info(f"Loaded {filename} with {len(data) if isinstance(data, (dict, list, set)) else 'data'}")
-            
-            if isinstance(default_value, set) and isinstance(data, list):
-                return set(data)
-            
-            return data
-    else:
-        logger.info(f"File {filename} not found, using default value")
-        return default_value
-
-def save_json_data(data, filename: str):
-    with open(filename, 'w', encoding='utf-8') as f:
-        json.dump(data, f, indent=2, ensure_ascii=False)
-    logger.info(f"Saved data to {filename}")
 
 def main():
     file_paths = ["data/mask_UCFCrime_Val.txt", "data/mask_UCFCrime_Train.txt", "data/mask_UCFCrime_Test.txt"]
