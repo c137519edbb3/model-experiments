@@ -13,7 +13,7 @@ import argparse
 def main():
     parser = argparse.ArgumentParser(description="Download UCF dataset videos.")
     parser.add_argument(
-        "--download-path",
+        "--download-dir",
         type=str,
         default="downloads",
     )
