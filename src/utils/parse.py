@@ -99,24 +99,13 @@ def parse_meta_data(file_path: str) -> dict:
         return {}
 
 
-def parse_video_list(file_path: str) -> list:
-    video_names = []
-    try:
-        with open(file_path, 'r', encoding='utf-8') as file:
-            for line_num, line in enumerate(file, 1):
-                line = line.strip()
-                if not line:
-                    continue
-
-                video_name = os.path.basename(line)
-                video_name = os.path.splitext(video_name)[0]
-                
-                video_names.append(video_name)
-        return video_names
-
-    except Exception as e:
-        logger.error(f"Error reading file {file_path}: {e}")
-        return []
+def parse_video_list(file_list_path: str) -> list:
+    def lower_first_letter(s):
+        return s[:1].lower() + s[1:]
+    with open(file_list_path, "r") as f:
+        video_paths = [lower_first_letter(line.strip())[:-4] for line in f.readlines()]
+    kaggle_paths = [f"data/{path}" for path in video_paths]
+    return kaggle_paths
     
 def extract_tags(response: str) -> tuple[str, list, list]:    
     try:
