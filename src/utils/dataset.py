@@ -63,7 +63,7 @@ def download_ucf_dataset(dir, kaggle_paths):
     malform = []
     for path in kaggle_paths:
         filename = path.split('/')[-1]
-        zip_path = f"dir{filename}.zip"
+        zip_path = f"{dir}/{filename}.zip"
 
         url = f"https://www.kaggle.com/api/v1/datasets/download/webadvisor/real-time-anomaly-detection-in-cctv-surveillance?dataset_version_number=1&file_name={path}.mp4"
         
