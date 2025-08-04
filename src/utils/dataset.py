@@ -60,7 +60,7 @@ class XDDataset(data.Dataset):
 
 def download_ucf_dataset(dir, kaggle_paths):
     os.makedirs(dir, exist_ok=True)
-
+    malform = []
     for path in kaggle_paths:
         filename = path.split('/')[-1]
         zip_path = f"dir{filename}.zip"
@@ -78,3 +78,7 @@ def download_ucf_dataset(dir, kaggle_paths):
         print(f"Detected MIME type: {file_type}")
         print("File size in bytes:", os.path.getsize(zip_path))
         print("All files downloaded, extracted, and cleaned up.")
+        if file_type not in ["application/zip", "video/mp4"]:
+            malform.append(path)
+
+    return malform
